@@ -10,7 +10,7 @@ import RootRouter from "./routers/Root.routes";
 import ifNotTesting from "./utils/ifNotTesting";
 import { connect } from "mongoose";
 import ModelController from "./utils/ModelController";
-import ItemModel from "./models/Item.model";
+import PortfolioItemModel from "./models/PortfolioItem.model";
 
 connect(
 	MONGO_URI,
@@ -33,7 +33,7 @@ app.use(helmet());
 ifNotTesting(() => app.use(expressLogger));
 
 app.use("/", RootRouter); //Router to handle requests to the root url
-app.use("/item", new ModelController(ItemModel).getRouter());
+app.use("/portfolio", new ModelController(PortfolioItemModel).getRouter());
 app.use("/error", ErrorRouter); //Router to test error handling
 
 //# Catch-all route to handle requests that are not caught by any other routes
