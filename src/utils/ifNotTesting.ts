@@ -1,4 +1,4 @@
-import { NODE_ENV } from "./../constants/environment";
+import { NODE_ENV } from "../constants/env";
 /**
  * Run a provided callback function if the server is not being tested
  *
