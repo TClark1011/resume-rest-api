@@ -1,6 +1,6 @@
 {
 	"name": "graphql-mock-store-backend",
-	"version": "0.1",
+	"version": "1.0.0",
 	"description": "A node graphql server for a mock store store api",
 	"main": "index.js",
 	"repository": "https://github.com/TClark1011/graphql-mock-store-backend",
