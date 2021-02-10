@@ -11,6 +11,7 @@ import ifNotTesting from "./utils/ifNotTesting";
 import { connect } from "mongoose";
 import ModelController from "./utils/ModelController";
 import PortfolioItemModel from "./models/PortfolioItem.model";
+import SkillModel from "./models/Skill.model";
 
 connect(
 	MONGO_URI,
@@ -34,6 +35,7 @@ ifNotTesting(() => app.use(expressLogger));
 
 app.use("/", RootRouter); //Router to handle requests to the root url
 app.use("/portfolio", new ModelController(PortfolioItemModel).getRouter());
+app.use("/skills", new ModelController(SkillModel).getRouter());
 app.use("/error", ErrorRouter); //Router to test error handling
 
 //# Catch-all route to handle requests that are not caught by any other routes
