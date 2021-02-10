@@ -1,17 +1,16 @@
-import { MONGO_URI } from "./constants/environment";
+import { MONGO_URI } from "./constants/env";
 import express from "express";
 import helmet from "helmet";
 import errorMiddleware from "./middleware/errorMiddleware";
 import expressLogger, { winstonLog } from "./middleware/loggingMiddleware";
-import ErrorRouter from "./routers/Errors.routes";
 import cors from "cors";
 import ServerError from "./utils/ServerError";
-import RootRouter from "./routers/Root.routes";
 import ifNotTesting from "./utils/ifNotTesting";
 import { connect } from "mongoose";
 import ModelController from "./utils/ModelController";
 import PortfolioItemModel from "./models/PortfolioItem.model";
 import SkillModel from "./models/Skill.model";
+import SectionModel from "./models/Section.model";
 
 connect(
 	MONGO_URI,
@@ -33,10 +32,9 @@ app.use(cors());
 app.use(helmet());
 ifNotTesting(() => app.use(expressLogger));
 
-app.use("/", RootRouter); //Router to handle requests to the root url
 app.use("/portfolio", new ModelController(PortfolioItemModel).getRouter());
 app.use("/skills", new ModelController(SkillModel).getRouter());
-app.use("/error", ErrorRouter); //Router to test error handling
+app.use("/sections", new ModelController(SectionModel).getRouter());
 
 //# Catch-all route to handle requests that are not caught by any other routes
 app.all("/*", () => {
