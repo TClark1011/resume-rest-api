@@ -11,6 +11,7 @@ import ModelController from "./utils/ModelController";
 import PortfolioItemModel from "./models/PortfolioItem.model";
 import SkillModel from "./models/Skill.model";
 import SectionModel from "./models/Section.model";
+import authMiddleware from "./middleware/authMiddleware";
 
 connect(
 	MONGO_URI,
@@ -32,6 +33,7 @@ app.use(cors());
 app.use(helmet());
 ifNotTesting(() => app.use(expressLogger));
 
+app.use(authMiddleware);
 app.use("/portfolio", new ModelController(PortfolioItemModel).getRouter());
 app.use("/skills", new ModelController(SkillModel).getRouter());
 app.use("/sections", new ModelController(SectionModel).getRouter());
