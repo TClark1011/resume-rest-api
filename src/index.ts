@@ -1,7 +1,6 @@
 import app from "./app";
-import { PORT } from "./constants/environment";
+import { PORT } from "./constants/env";
 import { winstonLog } from "./middleware/loggingMiddleware";
-import { Server } from "http";
 
 const serverPort = PORT || 4004;
 
