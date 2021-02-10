@@ -2,6 +2,7 @@ import winston from "winston";
 import expressWinston from "express-winston";
 import LogLevel from "../types/LogLevel";
 import "winston-daily-rotate-file";
+import supportsColor from "supports-color";
 
 const logFormat = winston.format.printf(
 	({ level, message, timestamp }) => `[${timestamp}] [${level}] ${message}`
@@ -20,7 +21,12 @@ const winstonInstance = winston.createLogger({
 			"format": baseFormat,
 		}),
 		new winston.transports.Console({
-			"format": winston.format.combine(winston.format.colorize(), baseFormat),
+			"format": winston.format.combine(
+				supportsColor.stdout
+					? winston.format.colorize()
+					: winston.format.uncolorize(),
+				baseFormat
+			),
 		}),
 	],
 });
@@ -31,6 +37,7 @@ const expressLogger = expressWinston.logger({
 	"msg": "HTTP {{req.method}} {{req.url}}",
 	"expressFormat": true,
 	"statusLevels": true,
+	"colorize": false,
 });
 
 export default expressLogger;
