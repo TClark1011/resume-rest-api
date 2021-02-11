@@ -1,19 +1,16 @@
 import { model, Schema, Document } from "mongoose";
-
-export interface IPortfolioItem extends Document {
-	name: string;
-	description: string;
-	link?: string;
-	tags: string[];
-	images: string[];
-}
+import { PortfolioItemProps } from "tc-resume-api-type-defs";
 
 const PortfolioItemSchema = new Schema({
 	"name": { "type": String, "required": true },
 	"description": { "type": String, "default": "" },
-	"link": { "type": String },
 	"tags": { "type": [String], "default": [] },
 	"images": { "type": [String], "default": [] },
+	"live_link": { "type": String },
+	"git_link": { "type": String },
 });
 
-export default model<IPortfolioItem>("portfolio_item", PortfolioItemSchema);
+export default model<PortfolioItemProps & Document>(
+	"portfolio_item",
+	PortfolioItemSchema
+);

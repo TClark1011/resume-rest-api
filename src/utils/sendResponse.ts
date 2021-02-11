@@ -1,5 +1,5 @@
 import { Response } from "express";
-import ServerResponseFields from "../types/ServerResponseFields";
+import { ServerResponseFields } from "tc-resume-api-type-defs";
 
 interface ExtraOptions {
 	extraData?: unknown;
@@ -20,7 +20,7 @@ const sendResponse = (
 	message: string,
 	{ extraData = null, status = 200 }: ExtraOptions = {}
 ): void => {
-	const response: ServerResponseFields = { message, "tone": "positive" };
+	const response: ServerResponseFields<unknown> = { message, "tone": "positive" };
 	if (extraData) {
 		response.extraData = extraData;
 	}

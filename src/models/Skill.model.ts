@@ -1,13 +1,9 @@
 import { model, Schema, Document } from "mongoose";
-
-export interface ISkill extends Document {
-	name: string;
-	level: 1 | 2 | 3;
-}
+import { SkillProps } from "tc-resume-api-type-defs";
 
 const SkillSchema = new Schema({
 	"name": { "type": String, "required": true },
 	"level": { "type": Number, "required": true, "enum": [1, 2, 3] },
 });
 
-export default model<ISkill>("skill", SkillSchema);
+export default model<SkillProps & Document>("skill", SkillSchema);

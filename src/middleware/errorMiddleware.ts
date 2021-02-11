@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import ServerResponseFields from "../types/ServerResponseFields";
+import { ServerResponseFields } from "tc-resume-api-type-defs";
 import ServerError from "../utils/ServerError";
 
 /**
@@ -17,7 +17,7 @@ const errorMiddleware = (
 	next: NextFunction
 ): void => {
 	const { status, message, extraData } = err;
-	const response: ServerResponseFields = {
+	const response: ServerResponseFields<unknown> = {
 		message,
 		"tone": "negative",
 	};
