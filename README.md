@@ -8,7 +8,7 @@ This API primarily manages 3 data types which can be accessed at their correspon
 
 - **Portfolio Item:** `/portfolio`
 - **Skill:**  `/skills`
-- **Section:** `/sections/`
+- **Section:** `/sections`
 
 Each of these data types have 4 routes:
 
