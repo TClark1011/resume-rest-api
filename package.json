@@ -1,12 +1,12 @@
 {
-	"name": "graphql-mock-store-backend",
+	"name": "resume-rest-api",
 	"version": "1.0.0",
-	"description": "A node graphql server for a mock store store api",
+	"description": "The REST api connected to thomas clark's resume at thomasclark.io",
 	"main": "index.js",
-	"repository": "https://github.com/TClark1011/graphql-mock-store-backend",
+	"repository": "https://github.com/TClark1011/resume-rest-api",
 	"author": "Thomas Clark <48699309+TClark1011@users.noreply.github.com>",
 	"license": "MIT",
-	"private": true,
+	"private": false,
 	"scripts": {
 		"start": "node build/index.js",
 		"start:dev": "nodemon src/index.ts",
